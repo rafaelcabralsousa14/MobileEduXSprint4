@@ -1,21 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import * as React from 'react';
+import {Button} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import Ranking from './src/ranking';
+import { color } from 'react-native-reanimated';
+
+const Stack = createStackNavigator();
+//const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+       <Stack.Navigator>
+        <Stack.Screen name="EduX" component={Ranking}
+          options={({ route }) => 
+          ({ title: route.params,
+            headerStyle: {
+              backgroundColor: '#9D0DCA',
+            },
+
+            headerRight: () => (
+              <Button
+                onPress={() => alert('This is a button!')}
+                title="Sair"
+                color="##9D0DCA"
+              />
+            ),
+         })} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+
