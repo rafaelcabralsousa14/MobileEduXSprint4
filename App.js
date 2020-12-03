@@ -1,27 +1,47 @@
-import 'react-native-gesture-handler';
-import * as React from 'react';
-import { NavigationContainer, TabActions } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Login from './pages/Login';
-import { StyleSheet } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native';
+import Dicas from './pages/Dicas';
+import { NavigationContainer } from '@react-navigation/native';
 
-const Tab = createBottomTabNavigator();
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
 
 export default function App() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Login" component={Login} />
-      </Tab.Navigator>
+   return(
+
+     <NavigationContainer  >
+      <Stack.Navigator  >
+        <Stack.Screen  name="EduX" component={Dicas} 
+            options={{
+              title: 'EduX',
+              headerStyle: {
+                backgroundColor: '#9D0DCA',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }}
+        />
+       
+      </Stack.Navigator>
     </NavigationContainer>
-  );
-};
+     );
+  
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  menu: {
+    backgroundColor: '#9D0DCA',
+  }
+
 });
